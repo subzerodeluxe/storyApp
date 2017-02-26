@@ -1,49 +1,40 @@
 import { Component } from '@angular/core';
-import { NavController, AlertController } from 'ionic-angular';
+import { ModalController } from 'ionic-angular';
 
+// import pages
+import { ImagePage } from '../image/image';
+import { AddImagePage } from '../add-image/add-image';
 
-// import native camera 
-import { Camera } from 'ionic-native';
+// import models and services 
+import { Image } from '../../models/image';
+import { ImagesService } from '../../services/images'; 
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
+
 export class HomePage {
+  
   // properties
-  imageUrl = ''; 
+  addImagePage = AddImagePage; 
+  images: Image[] = []; 
+  
+  constructor(private imagesService: ImagesService,
+  private modalCtrl: ModalController) {
 
-  constructor(public navCtrl: NavController, private alertCtrl: AlertController) {
-    
   }
 
-
-  takePicture() {
-    Camera.getPicture({
-      destinationType: Camera.DestinationType.DATA_URL,
-      targetWidth: 1000,
-      targetHeight: 1000
-    })
-      .then(
-        imageData => {
-          console.log('Took a shot!');
-          this.imageUrl = "data:image/jpeg;base64," + imageData;
-        }
-      )
-      .catch(
-        err => {
-          this.showAlert('Camera not working. Bleh!');
-        }
-      ) 
+  ionViewWillEnter() {
+    this.images = this.imagesService.loadImages(); 
+    console.log(new Date().toLocaleDateString()); 
   }
 
-  showAlert(message: string) {
-    const alert = this.alertCtrl.create({
-      title: 'Oh my ..',
-      subTitle: message,
-      buttons: ['OK']
-    });
-    alert.present(); 
+  openImage(image: Image, index: number) {
+    const modal = this.modalCtrl.create(ImagePage, {image: image, index: index}); 
+    modal.present(); 
   }
+
+ 
 
 }

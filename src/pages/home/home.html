@@ -12,24 +12,17 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-grid>
+  <ion-card *ngFor="let image of images; let i = index" (click)="openImage(image, i)">
+      <img [src]="image.imageUrl">    
+    <ion-card-content>
+      <ion-card-title text-center>{{ image.date }}</ion-card-title>
+      <p>{{ image.title }}</p>
+    </ion-card-content>
+  </ion-card>
 
-    <ion-row>
-        <ion-col>
-          <img [src]="imageUrl" *ngIf="imageUrl"> 
-        </ion-col>
-      </ion-row>
-
-      <ion-row>
-        <ion-col>
-          <button ion-button block outline icon-left
-              (click)="takePicture()">
-              <ion-icon name="camera"></ion-icon>
-              Take a Picture!
-          </button>
-        </ion-col>
-      </ion-row>
-  </ion-grid>
-
-
+    <ion-fab right bottom>
+      <button ion-fab color="light" [navPush]="addImagePage"><ion-icon name="add"></ion-icon></button>
+    </ion-fab>
 </ion-content>
+
+ 

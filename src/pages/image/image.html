@@ -1,0 +1,33 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Image</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col text-center>
+        <img [src]="image.imageUrl">
+      </ion-col>  
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <button ion-button
+        block
+        (click)="leaveImage()">Go Back</button>
+      </ion-col>
+    </ion-row>
+
+    <ion-col>
+      <button ion-button block color="danger"
+      (click)="deleteImage()">Delete</button>
+    </ion-col>
+  </ion-grid>
+
+</ion-content>
