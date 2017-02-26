@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, AlertController } from 'ionic-angular';
+
 
 // import native camera 
 import { Camera } from 'ionic-native';
@@ -12,27 +13,37 @@ export class HomePage {
   // properties
   imageUrl = ''; 
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, private alertCtrl: AlertController) {
     
   }
 
 
   takePicture() {
     Camera.getPicture({
-      encodingType: Camera.EncodingType.JPEG,
-      correctOrientation: true
+      destinationType: Camera.DestinationType.DATA_URL,
+      targetWidth: 1000,
+      targetHeight: 1000
     })
       .then(
         imageData => {
           console.log('Took a shot!');
-          this.imageUrl = imageData; 
+          this.imageUrl = "data:image/jpeg;base64," + imageData;
         }
       )
       .catch(
         err => {
-          console.log(err);
+          this.showAlert('Camera not working. Bleh!');
         }
       ) 
+  }
+
+  showAlert(message: string) {
+    const alert = this.alertCtrl.create({
+      title: 'Oh my ..',
+      subTitle: message,
+      buttons: ['OK']
+    });
+    alert.present(); 
   }
 
 }
