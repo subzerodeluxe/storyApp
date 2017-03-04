@@ -1,4 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
+import { trigger, state, style, transition, animate, keyframes } from '@angular/core';
 import { Platform, NavController, MenuController } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 
@@ -10,6 +11,7 @@ import { LoginPage } from '../pages/login/login';
 @Component({
   templateUrl: 'app.html'
 })
+
 export class MyApp {
   rootPage = HomePage;
   signupPage = SignupPage;

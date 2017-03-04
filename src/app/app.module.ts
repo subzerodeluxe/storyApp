@@ -1,6 +1,7 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
+import { ParallaxHeader } from '../components/parallax-header/parallax-header';
 
 // import models and services
 import { ImagesService } from '../services/images';
@@ -18,7 +19,8 @@ import { AddImagePage } from '../pages/add-image/add-image';
     HomePage,
     LoginPage,
     SignupPage,
-    AddImagePage
+    AddImagePage,
+    ParallaxHeader
   ],
   imports: [
     IonicModule.forRoot(MyApp)

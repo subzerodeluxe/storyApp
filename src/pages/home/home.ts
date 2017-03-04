@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ModalController } from 'ionic-angular';
+import 'web-animations-js';
 
 // import pages
 import { ImagePage } from '../image/image';
